@@ -75,31 +75,31 @@ Next we install (and link where appropriate) wget, scientific linux kernel, gcc,
 Bash script config/1.config.VM.sh
 
 ```{bash}
-sudo yum -y install wget
-wget ftp://ftp.pbone.net/mirror/ftp.scientificlinux.org/linux/scientific/6.2/x86_64/updates/security/kernel-devel-2.6.32-220.23.1.el6.x86_64.rpm
-sudo yum install kernel-devel-2.6.32-220.23.1.el6.x86_64.rpm -y
-sudo yum install kernel-devel-2.6.32-358.18.1.el6.x86_64 -y
-sudo yum install gcc -y
-sudo bash
-ln -s /usr/src/kernels/2.6.32-220.23.1.el6.x86_64 /usr/src/linux
-exit
-ln -s /usr/src/kernels/2.6.32-220.23.1.el6.x86_64 /usr/src/linux
-mkdir rpm
-cd rpm
-wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
-rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-sudo rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-sudo rpm -i rpmforge-release-0.5.2-2.el6.rf.*.rpm
-sudo yum install dkms
-sudo bash
-mkdir /mnt/ISO
-cd /home/cloudera/Downloads
-wget http://download.virtualbox.org/virtualbox/4.2.18/VBoxGuestAdditions_4.2.18.iso 
-mount -t iso9660 -o loop VBoxGuestAdditions_4.2.18.iso /mnt/ISO 
-cd /mnt/ISO 
-ls 
-sh VBoxLinuxAdditions.run
-reboot
+$ sudo yum -y install wget
+$ wget ftp://ftp.pbone.net/mirror/ftp.scientificlinux.org/linux/scientific/6.2/x86_64/updates/security/kernel-devel-2.6.32-220.23.1.el6.x86_64.rpm
+$ sudo yum install kernel-devel-2.6.32-220.23.1.el6.x86_64.rpm -y
+$ sudo yum install kernel-devel-2.6.32-358.18.1.el6.x86_64 -y
+$ sudo yum install gcc -y
+$ sudo bash
+$ ln -s /usr/src/kernels/2.6.32-220.23.1.el6.x86_64 /usr/src/linux
+$ exit
+$ ln -s /usr/src/kernels/2.6.32-220.23.1.el6.x86_64 /usr/src/linux
+$ mkdir rpm
+$ cd rpm
+$ wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+$ rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+$ sudo rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+$ sudo rpm -i rpmforge-release-0.5.2-2.el6.rf.*.rpm
+$ sudo yum install dkms
+$ sudo bash
+$ mkdir /mnt/ISO
+$ cd /home/cloudera/Downloads
+$ wget http://download.virtualbox.org/virtualbox/4.2.18/VBoxGuestAdditions_4.2.18.iso 
+$ mount -t iso9660 -o loop VBoxGuestAdditions_4.2.18.iso /mnt/ISO 
+$ cd /mnt/ISO 
+$ ls 
+$ sh VBoxLinuxAdditions.run
+$ reboot
 ```
 
 ####3.Install R, RStudio and CRAN packages
@@ -108,12 +108,12 @@ Next we add the EPEL repository, intall git, wget and R. We , set Hadoop environ
 Bash script config/2.config.VM.sh
 
 ```{bash}
-sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
- sudo yum -y install git R
- sudo ln -s /etc/default/hadoop-0.20-mapreduce /etc/profile.d/hadoop.sh
- cat /etc/profile.d/hadoop.sh | sed 's/export //g' > ~/.Renviron
- wget http://download2.rstudio.org/rstudio-server-0.97.336-x86_64.rpm
- sudo yum install --nogpgcheck rstudio-server-0.97.336-x86_64.rpm -y
+$ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+$ sudo yum -y install git R
+$ sudo ln -s /etc/default/hadoop-0.20-mapreduce /etc/profile.d/hadoop.sh
+$ cat /etc/profile.d/hadoop.sh | sed 's/export //g' > ~/.Renviron
+$ wget http://download2.rstudio.org/rstudio-server-0.97.336-x86_64.rpm
+$ sudo yum install --nogpgcheck rstudio-server-0.97.336-x86_64.rpm -y
  ```
 
 Access Rstudio from the browser (you may use any machine in the home network)
@@ -132,11 +132,11 @@ Next we installation of RHadoop's rmr2 and pre-requisite packages. (Run R as roo
 Bash script config/3.config.VM.sh
 
 ```{bash}
-sudo R --no-save << EOF
-install.packages(c('Rcpp', 'RJSONIO', 'itertools', 'digest', 'functional', 'plyr', 'stringr'), repos="http://cran.revolutionanalytics.com", INSTALL_opts=c('--byte-compile') )
-EOF
-wget --no-check-certificate https://github.com/downloads/RevolutionAnalytics/RHadoop/rmr2_2.0.2.tar.gz
-sudo R CMD INSTALL rmr2_2.0.2.tar.gz
-sudo R CMD library(rmr2)
+$ sudo R --no-save << EOF
+$ install.packages(c('Rcpp', 'RJSONIO', 'itertools', 'digest', 'functional', 'plyr', 'stringr'), repos="http://cran.revolutionanalytics.com", INSTALL_opts=c('--byte-compile') )
+$ EOF
+$ wget --no-check-certificate https://github.com/downloads/RevolutionAnalytics/RHadoop/rmr2_2.0.2.tar.gz
+$ sudo R CMD INSTALL rmr2_2.0.2.tar.gz
+$ sudo R CMD library(rmr2)
 ```
 
