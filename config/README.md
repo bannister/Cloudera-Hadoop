@@ -1,7 +1,9 @@
-###Config Cloudera VM on VirtualBox 
+Configuring Cloudera VM on VirtualBox 
+=====================================
 adapted slightly from http://blogr-cs.blogspot.co.uk/2012/12/integration-of-r-rstudio-and-hadoop-in.html
-
-####1. Install VM
+
+1. Install VM
+-------------
 
 1. Download and install the latest release of VirtualBox (Ver 4.2.6 at the time of this post) for your platform (Here OS X)
 ```http://download.virtualbox.org/virtualbox/4.2.6/VirtualBox-4.2.6-82870-OSX.dmg```
@@ -60,7 +62,8 @@ The cloudera account has sudo privileges in the VM.
 7. For close integration and better performance we need to install "Guest additions" in the VM. 
 There are some prerequisites to installation of 'Guest additions'.
 
-####2. Configure VM
+2. Configure VM
+---------------
 Run console
 Switch to root use, update linux kernel and reboot: 
 
@@ -102,7 +105,9 @@ $ sh VBoxLinuxAdditions.run
 $ reboot
 ```
 
-####3.Install R, RStudio and CRAN packages
+3.Install R, RStudio and CRAN packages
+--------------------------------------
+
 Next we add the EPEL repository, intall git, wget and R. We , set Hadoop environment variables so R can find them install rstudio server
 
 Bash script config/2.config.VM.sh
